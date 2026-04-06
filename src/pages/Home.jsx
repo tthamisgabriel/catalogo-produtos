@@ -10,7 +10,6 @@ function Home() {
   const [preco, setPreco] = useState("");
   const [descricao, setDescricao] = useState("");
 
-  // SIMULAÇÃO DE API (EXATAMENTE O QUE O EXERCÍCIO PEDE)
   useEffect(() => {
     setTimeout(() => {
       setProdutos([
@@ -50,6 +49,11 @@ function Home() {
     setDescricao("");
   }
 
+  function removerProduto(id) {
+  const novaLista = produtos.filter((p) => p.id !== id);
+  setProdutos(novaLista);
+}
+
   return (
     <div className="container">
       <h1>Produtos</h1>
@@ -64,6 +68,7 @@ function Home() {
             preco={p.preco}
             descricao={p.descricao}
             imagem={p.imagem}
+            onDelete={() => removerProduto(p.id)}
           />
         ))
       )}
